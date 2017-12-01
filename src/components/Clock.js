@@ -3,33 +3,40 @@ import moment from 'moment'
 
 class Clock extends React.Component {
 
+	constructor(props) {
+		super(props);
+
+		this.state = {
+			timeOutId: null,
+			sec: this.getRotation(0),
+			min: this.getRotation(0),
+			hour: this.getRotation(0)
+		};
+	}
+
+    getRotation(deg) {
+        return `rotate(${deg} 50 50)`;
+    }
+
 	componentDidUpdate(){
 
-		if(!this.props.initialTime){
-			return;
+		if(!this.state.timeOutId){
+
+			var self = this;
+
+			var initialTimeDate = moment(this.props.initialTime);
+			var currentTime = initialTimeDate.clone();
+
+			(function updateClock() {
+			    currentTime = currentTime.add(1, 's');
+				self.setState({
+					sec: self.getRotation(6 * currentTime.seconds()),
+					min: self.getRotation(6 * currentTime.minutes()),
+					hour: self.getRotation(30 * (currentTime.hours() % 12) + currentTime.minutes() / 2)
+				});
+			    self.state.timeOutId = setTimeout(updateClock, 1000);
+			})();
 		}
-
-		var initialTimeDate = moment(this.props.initialTime).toDate();
-		//this is an object currently not a date.
-
-		console.log(initialTimeDate);
-
-		var sec = document.getElementById('sec');
-		var min = document.getElementById('min');
-		var hour = document.getElementById('hour');
-
-	    function rot(el, deg) {
-	        el.setAttribute('transform', 'rotate(' + deg + ' 50 50)')
-	    }
-
-		setInterval(function () {
-			//.setSeconds(initialTimeDate.getSeconds() + 1)
-		    var d = initialTimeDate;
-		    console.log(typeof(d));
-		    rot(sec, 6 * d.getSeconds())
-		    rot(min, 6 * d.getMinutes())
-		    rot(hour, 30 * (d.getHours() % 12) + d.getMinutes() / 2)
-		}, 1000);
 	}
 
 	render() {
@@ -38,9 +45,9 @@ class Clock extends React.Component {
 				<svg id="clock" viewBox="0 0 100 100">
 				<circle id="face" cx="50" cy="50" r="45" />
 					<g id="hands">
-						<rect id="hour" x="48.5" y="22.5" width="5" height="30" rx="2.5" ry="2.55" />
-						<rect id="min" x="48" y="12.5" width="3" height="40" rx="2" ry="2" />
-						<line id="sec" x1="50" y1="50" x2="50" y2="16" />
+						<rect id="hour" x="48.5" y="22.5" width="5" height="30" rx="2.5" ry="2.55" transform={this.state.hour}/>
+						<rect id="min" x="48" y="12.5" width="3" height="40" rx="2" ry="2" transform={this.state.min}/>
+						<line id="sec" x1="50" y1="50" x2="50" y2="16" transform={this.state.sec}/>
 					</g>
 				</svg>
 			</div>
