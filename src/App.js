@@ -5,7 +5,6 @@ import Clock from './components/Clock';
 import logo from './images/logo.svg';
 import moment from 'moment'
 
-
 class App extends Component {
 
   constructor(props) {
@@ -54,8 +53,7 @@ class App extends Component {
         <h2>{this.formatTimeToHourOfDay(this.state.operationHours.open_at)}</h2>
         <h2>{this.formatTimeToHourOfDay(this.state.operationHours.closed_at)}</h2>
 
-        <Clock/>
-
+        <Clock initialTime={this.state.time}/>
       </div>
     );
   }

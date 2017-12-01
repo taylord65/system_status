@@ -14,6 +14,19 @@
 .App-intro {
   font-size: large;
 }
+#face {
+  fill: #fff;
+  stroke-width: 2px;
+  stroke: #000;
+}
+#hour,
+#min,
+#sec {
+  fill: #333;
+}
+#sec {
+  stroke: #f55;
+}
 @-moz-keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
