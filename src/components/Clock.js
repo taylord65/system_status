@@ -24,16 +24,15 @@ class Clock extends React.Component {
 
 			var self = this;
 
-			var initialTimeDate = moment(this.props.initialTime);
-			var currentTime = initialTimeDate.clone();
+			var currentTime = moment(this.props.initialTime);
 
 			(function updateClock() {
-			    currentTime = currentTime.add(1, 's');
 				self.setState({
 					sec: self.getRotation(6 * currentTime.seconds()),
 					min: self.getRotation(6 * currentTime.minutes()),
 					hour: self.getRotation(30 * (currentTime.hours() % 12) + currentTime.minutes() / 2)
 				});
+			    currentTime = currentTime.add(1, 's');
 			    self.state.timeOutId = setTimeout(updateClock, 1000);
 			})();
 		}
@@ -42,7 +41,8 @@ class Clock extends React.Component {
 	render() {
 		return (
 			<div>
-				<svg id="clock" viewBox="0 0 100 100">
+				{this.props.ready ? (
+				<svg id="clock" viewBox="0 0 100 100" className="animated fadeIn">
 				<circle id="face" cx="50" cy="50" r="45" />
 					<g id="hands">
 						<rect id="hour" x="48.5" y="22.5" width="5" height="30" rx="2.5" ry="2.55" transform={this.state.hour}/>
@@ -50,6 +50,7 @@ class Clock extends React.Component {
 						<line id="sec" x1="50" y1="50" x2="50" y2="16" transform={this.state.sec}/>
 					</g>
 				</svg>
+				) : null}
 			</div>
 		);
 	}

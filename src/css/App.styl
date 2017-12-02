@@ -1,33 +1,37 @@
-.App {
-  text-align: center;
-}
+bgColor = #F6F7F9;
+textColor = #5F5F5F;
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
-}
+med = 1130px;
+sml = 480px;
 
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
-}
+.App
+  text-align center
+  width 100%
+  height 100%
+  position relative
+  .appContainer
+    margin auto
+    width 50%
+    height 100%
+    @media (max-width: sml)
+      width 100%
+    
 
-.App-intro {
-  font-size: large;
-}
-
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
-
+.App-header
+  background-color bgColor
+  height 35%
+  padding 20px
+  color textColor
+  img
+    width 10em
+  
+.hoursNotice
+  height 2em
 
 #face {
-    fill : #FFF;
-    stroke-width: 2px;
-    stroke: #000;
+  fill : #FFF;
+  stroke-width: 2px;
+  stroke: #000;
 }
 #hour, #min, #sec {
     fill: #333;
