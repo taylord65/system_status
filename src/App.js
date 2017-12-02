@@ -23,7 +23,7 @@ class App extends Component {
   }
 
   formatTimeToHourOfDay(time){
-    return moment(time).format("h:mm a");
+    return moment(time).format("ha");
   }
 
   componentDidMount() {
@@ -53,6 +53,7 @@ class App extends Component {
       akiraStatus = 'We are ' + (this.state.openForBusiness ? 'open today!' : 'closed today.');
       statusHeader = <div className="hoursNotice">
                       <h1 className="animated fadeIn">{akiraStatus}</h1>
+                      <div className="seperator animated fadeIn"></div>
                       <h2 className="animated fadeIn">{this.formatTimeToHourOfDay(this.state.operationHours.open_at)} - {this.formatTimeToHourOfDay(this.state.operationHours.closed_at)}</h2>
                     </div>;
     } else {
