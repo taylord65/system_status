@@ -51,18 +51,16 @@ class App extends Component {
 
     if(dataReady){
       akiraStatus = 'We are ' + (this.state.openForBusiness ? 'open today!' : 'closed today.');
-      statusHeader = <div className="hoursNotice animated fadeIn">
-                      <h1>{akiraStatus}</h1>
-                      <h2>{this.formatTimeToHourOfDay(this.state.operationHours.open_at)}</h2>
-                      <h2>{this.formatTimeToHourOfDay(this.state.operationHours.closed_at)}</h2>
+      statusHeader = <div className="hoursNotice">
+                      <h1 className="animated fadeIn">{akiraStatus}</h1>
+                      <h2 className="animated fadeIn">{this.formatTimeToHourOfDay(this.state.operationHours.open_at)} - {this.formatTimeToHourOfDay(this.state.operationHours.closed_at)}</h2>
                     </div>;
     } else {
       statusHeader = <div className="hoursNotice"></div>;
     }
 
     return (
-      <div className="App">
-
+      <div className="App animated fadeIn">
         <div className="appContainer">
           <div className="App-header">
             <img src={logo} alt="Akira Logo"/>
