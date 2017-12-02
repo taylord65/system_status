@@ -27,7 +27,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    axios.get('https://app.akira.md/api/system_status')
+    axios.get('https://cors-anywhere.herokuapp.com/https://app.akira.md/api/system_status')
       .then(res => {
         const systemStatus = res.data;
         
