@@ -51,6 +51,7 @@ class Clock extends React.Component {
 						<rect id="min" x="48" y="12.5" width="3" height="40" transform={this.state.min}/>
 						<line id="sec" x1="50" y1="50" x2="50" y2="16" transform={this.state.sec}/>
 					</g>
+				<circle id="dot" cx="50" cy="50" r="1" />
 				</svg>
 				) : null}
 			</div>

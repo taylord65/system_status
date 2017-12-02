@@ -42,7 +42,7 @@
   margin-top: 1.4em;
 }
 .App-header .hoursNotice h2 {
-  color: #5f5f5f;
+  color: #a8a8a8;
   font-weight: 300;
   font-size: 1em;
 }
@@ -91,4 +91,7 @@
   fill: none;
   stroke: #f55;
   stroke-width: 1.0321;
+}
+#dot {
+  fill: #f44336;
 }
