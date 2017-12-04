@@ -18,6 +18,10 @@ class Clock extends React.Component {
         return `rotate(${deg} 50 50)`;
     }
 
+	componentWillUnmount() {
+		clearInterval(this.state.timeOutId);
+	}
+
 	componentDidUpdate(){
 
 		if(!this.state.timeOutId){

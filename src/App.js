@@ -2,9 +2,10 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import './css/App.css';
 import './css/animate.css';
-import Clock from './components/Clock';
 import logo from './images/logo.svg';
-import moment from 'moment'
+import spinner from './images/spinner.svg';
+import Clock from './components/Clock';
+import moment from 'moment';
 
 class App extends Component {
 
@@ -57,15 +58,15 @@ class App extends Component {
             <img src={logo} alt="Akira Logo"/>
 
               {this.state.dataReady ? (
-
                 <div className="hoursNotice">
                   <h1 className={"animated fadeIn " + (this.state.openForBusiness ? 'openStatus' : 'closedStatus')}>{akiraStatus}</h1>
                   <div className="seperator animated fadeIn"></div>
                   <h2 className="animated fadeIn">Today's hours: {this.formatTimeToHourOfDay(this.state.operationHours.open_at)} - {this.formatTimeToHourOfDay(this.state.operationHours.closed_at)}</h2>
                 </div>
-                
               ) : 
-                <div className="hoursNotice"></div>
+                <div className="hoursNotice spinContainer">
+                    <img src={spinner} alt="spinner" className="spin"/>
+                </div>
               }
 
           </div>
